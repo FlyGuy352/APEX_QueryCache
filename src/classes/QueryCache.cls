@@ -25,13 +25,13 @@ public class QueryCache {
      * @return	The records that matched the requested identifiers
      */
     public List<SObject> get(Set<Id> recordIds) {
-        if(!recordCache.keySet().containsAll(recordIds)){
+        if(!recordCache.keySet().containsAll(recordIds)) {
             Set<Id> missingIds = new Set<Id>(recordIds);
             missingIds.removeAll(recordCache.keySet());
             recordCache.putAll(this.query(missingIds));
         }
         List<SObject> results = new List<SObject>();
-        for(Id recordId : recordIds){
+        for(Id recordId : recordIds) {
             results.add(recordCache.get(recordId));
         }
         return results;
